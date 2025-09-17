@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileFeadTest03 {
+public class FileReadTest03 {
     public static void main(String[] args) {
         BufferedReader br = null;
         String line = null;
