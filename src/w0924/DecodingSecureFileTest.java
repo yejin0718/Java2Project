@@ -26,7 +26,7 @@ public class DecodingSecureFileTest {
                     code -= 100;
                     dedoceSecureStr += (char)code;
                 }
-                fw.write(dedoceSecureStr + "\n");
+                fw.write(dedoceSecureStr);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
