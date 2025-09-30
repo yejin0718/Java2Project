@@ -26,7 +26,11 @@ public class DecodingSecureFileTest {
                     code -= 100;
                     dedoceSecureStr += (char)code;
                 }
+                dedoceSecureStr += "\n";
+
                 fw.write(dedoceSecureStr);
+
+                dedoceSecureStr = "";
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -39,6 +43,8 @@ public class DecodingSecureFileTest {
             fr.close();
             br.close();
             sc.close();
+
+            System.out.println("복호화 완료: D:/FileTest/DecodingSecureFile.txt");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
