@@ -22,7 +22,7 @@ public class DrawPolygonTest extends JFrame {
         new DrawPolygonTest();
     }
 
-    class DrawPanel extends JPanel {
+    public class DrawPanel extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
