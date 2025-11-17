@@ -1,7 +1,6 @@
 package w1112.draw;
 
 import center_frame.CenterFrame;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +8,12 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame implements ActionListener {
     PaintingPanel panel;
     String[] rbStrs = {"선", "사각형", "타원형"};
-    JRadioButton[] rbs =  new JRadioButton[rbStrs.length];
+    JRadioButton[] rbs = new JRadioButton[rbStrs.length];
 
     public MainFrame() {
         JPanel panelNorth = new JPanel();
         ButtonGroup bg = new ButtonGroup();
+
         for (int i = 0; i < rbStrs.length; i++) {
             rbs[i] = new JRadioButton(rbStrs[i]);
             bg.add(rbs[i]);
@@ -38,20 +38,9 @@ public class MainFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         String cmd = e.getActionCommand();
-        switch (cmd) {
-            case "선":
-                panel.polygon="선";
-                panel.repaint();
-                break;
-            case "사각형":
-                panel.polygon="사각형";
-                panel.repaint();
-                break;
-            case "타원형":
-                panel.polygon="타원형";
-                panel.repaint();
-                break;
-        }
+
+        panel.polygon = cmd;
+        panel.clearDraw();
     }
 
     public static void main(String[] args) {
