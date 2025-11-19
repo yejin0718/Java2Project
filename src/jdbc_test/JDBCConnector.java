@@ -35,7 +35,7 @@ public class JDBCConnector {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 System.out.print(rs.getString("name") + " || ");
-                System.out.print(rs.getString("publish_name"));
+                System.out.print(rs.getString("publish"));
                 System.out.println();
             }
         } catch (SQLException e) {

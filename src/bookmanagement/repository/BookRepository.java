@@ -21,7 +21,7 @@ public class BookRepository {
         String sql = "select isbn, name, publish, author, price, category_name from book, category where book.category = category.category_id and " + columnNames[selectedIndex] + " like ?";
         try {
             psmt = con.prepareStatement(sql);
-            psmt.setString(1, searchWord);
+            psmt.setString(1, "%"+searchWord+"%");
             rs = psmt.executeQuery();
             while (rs.next()) {
                 BookVO bookVO = new BookVO();
