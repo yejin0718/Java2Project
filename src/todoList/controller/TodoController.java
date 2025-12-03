@@ -8,7 +8,6 @@ import todoList.view.TodoInsertView;
 import todoList.view.TodoReadView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -34,7 +33,7 @@ public class TodoController extends JFrame {
         btnRefresh = readView.getBtnRefresh();
         btnRefresh.addActionListener(refreshL);
 
-        // 삭제 버튼 리스너 연결 (⭐추가)
+        // 삭제 버튼 리스너 연결
         readView.setDeleteListener(deleteBtnL);
 
         // 2) INSERT 화면
@@ -87,7 +86,7 @@ public class TodoController extends JFrame {
     };
 
 
-    // ⭐ 수정 버튼 리스너
+    //수정 버튼 리스너
     ActionListener updateBtnL = e -> {
 
         int todoId = (int) e.getSource();
@@ -117,7 +116,7 @@ public class TodoController extends JFrame {
     };
 
 
-    // ⭐⭐ 삭제 버튼 리스너
+    //삭제 버튼 리스너
     ActionListener deleteBtnL = e -> {
 
         int todoId = (int) e.getSource();
