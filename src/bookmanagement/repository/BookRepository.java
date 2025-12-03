@@ -99,6 +99,65 @@ public class BookRepository {
                 e.printStackTrace();
             }
         }
+    }
 
+    public void update(BookVO vo) {
+        Connection con = JDBCConnector.getConnection();
+        String sql = "update book set name=?, publish=?, author=?, price=?, category=? where isbn=?";
+        PreparedStatement psmt = null;
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, vo.getName());
+            psmt.setString(2, vo.getPublish());
+            psmt.setString(3, vo.getAuthor());
+            psmt.setInt(4, vo.getPrice());
+            int categoryId = 0;
+            switch (vo.getCategoryName()) {
+                case "IT도서":
+                    categoryId = 10;
+                    break;
+                case "소설":
+                    categoryId = 20;
+                    break;
+                case "비소설":
+                    categoryId = 30;
+                    break;
+                case "경제":
+                    categoryId = 40;
+                    break;
+                case "사회":
+                    categoryId = 50;
+                    break;
+            }
+            psmt.setInt(5, categoryId);
+            psmt.setInt(6, vo.getIsbn());
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("update close 문제 발생");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void delete(BookVO bookVO) {
+        Connection con = JDBCConnector.getConnection();
+        String sql = "delete from book where isbn=?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, bookVO.getIsbn());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            try{
+                if (ps != null)
+                    ps.close();
+                if(con != null)
+                    con.close();
+            }catch (SQLException e){
+                System.out.println("delete close 문제발생");
+                e.printStackTrace();
+            }
+        }
     }
 }

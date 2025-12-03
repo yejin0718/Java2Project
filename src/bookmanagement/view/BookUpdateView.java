@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BookInsertView extends JPanel {
+public class BookUpdateView extends JPanel {
     JTable table;
     DefaultTableModel model;
     ArrayList<BookVO> bookVOList;
@@ -18,12 +18,12 @@ public class BookInsertView extends JPanel {
     JLabel[] lbls = new JLabel[header.length];
     JTextField[] tf = new JTextField[header.length - 1];
     JComboBox<String> categoryCombo;
-    JButton btnAdd;
+    JButton btnUpdate;
 
-    public BookInsertView() {
+    public BookUpdateView() {
         setLayout(new BorderLayout());
         categoryCombo = new JComboBox(categoryNames);
-        btnAdd = new JButton("추가");
+        btnUpdate = new JButton("수정");
         panS = new JPanel(new GridLayout(4, 4));
         for (int i = 0; i < header.length; i++) {
             lbls[i] = new JLabel(header[i]);
@@ -39,7 +39,14 @@ public class BookInsertView extends JPanel {
         for(int i=0; i<3; i++) {
             panS.add(new JLabel(""));
         }
-        panS.add(btnAdd);
+        panS.add(btnUpdate);
+    }
+
+    public void setTextFiled(int rowIndex) {
+        for (int i=0; i<tf.length; i++) {
+            tf[i].setText(model.getValueAt(rowIndex, i).toString());
+        }
+        categoryCombo.setSelectedItem(model.getValueAt(rowIndex, 5));
     }
 
     public void initView() {
@@ -79,15 +86,15 @@ public class BookInsertView extends JPanel {
         }
     }
 
-    public JButton getBtnAdd() {
-        return btnAdd;
+    public JButton getBtnUpdate() {
+        return btnUpdate;
     }
 
     public void setBookVOList(ArrayList<BookVO> bookVOList) {
         this.bookVOList = bookVOList;
     }
 
-    public BookVO neededInsertData() {
+    public BookVO neededUpdateData() {
         BookVO vo = new BookVO();
         vo.setIsbn(Integer.parseInt(tf[0].getText()));
         vo.setName(tf[1].getText());
@@ -99,9 +106,17 @@ public class BookInsertView extends JPanel {
         return vo;
     }
 
-    public void initInsertData() {
+    public void initUpdateData() {
         for (int i=0; i<tf.length; i++) {
 
         }
+    }
+
+    public JButton getBtnAdd() {
+        return btnUpdate;
+    }
+
+    public JTable getTable() {
+        return table;
     }
 }

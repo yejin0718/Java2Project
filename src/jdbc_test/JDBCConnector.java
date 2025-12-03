@@ -5,7 +5,8 @@ import java.sql.*;
 public class JDBCConnector {
     private static final String DRIVER_PATH = "oracle.jdbc.driver.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@localhost:1521/xe";
-    private static final String USER_NAME = "c##BOOK";
+    private static final String USER_NAME = "C##BOOK";
+//private static final String USER_NAME = "C##TODO";
     private static final String PASSWORD = "1234";
 
     private static Connection con;
@@ -31,11 +32,12 @@ public class JDBCConnector {
         try {
 //        3. SQL문을 실행할 수 있는 Statement객체 생성(미리준비된 sql문을 실행할 수 있는 문장객체를 생성)
             String sql = "select * from book, category where book.category = category.category_id";
+//            String sql = "select * from todo";
             PreparedStatement pstmt = con.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                System.out.print(rs.getString("name") + " || ");
-                System.out.print(rs.getString("publish"));
+                System.out.print(rs.getString("todo_id") + " || ");
+                System.out.print(rs.getString("content"));
                 System.out.println();
             }
         } catch (SQLException e) {
